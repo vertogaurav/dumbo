@@ -1,21 +1,62 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
+<div style="text-align: center" >
+  <h1 class="header">
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <div>
+  <div class="Drop">
+    Select City:
+    <select name="DropList" #t (change)="getDetails(t.value)">
+        <option value="CITY">CITY</option>
+      <option value="MUMBAI">MUMBAI</option>
+      <option value="PUNE">PUNE</option>
+      <option value="BANGLORE">BANGLORE</option>
+      <option value="DELHI">DELHI</option>
+      <option value="HYDERABAD">HYDERABAD</option>
+    </select>
+  </div>
+  <div > 
+   Search Bank: <input type="text" placeholder="Search.." name="search"[(ngModel)]="this.filter">
+  </div>
+  <div class="noofpages">
+      No of Pages:
+      <select name="DropList1"#q (change)="getpage(q.value)" >
+          <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+  <div> 
+</div>
+<div style="height: 10px"></div>
+<div><table>
+  <tr>
+    <th>City</th>
+    <th>District</th>
+    <th>Bank Name</th>
+    <th>Bank ID</th>
+    <th>BRANCH</th>
+    <th>IFSC</th>
+  </tr>
+  
+    <tr *ngFor="let data of DataList|filter:filter| paginate: { itemsPerPage: this.page, currentPage: this.p }">  
+    <td>{{this.data.city}}</td>
+    <td>{{this.data.district}}</td>
+    <td>{{this.data.bank_name}}</td>
+    <td>{{this.data.bank_id}}</td>
+    <td>{{this.data.branch}}</td>
+    <td>{{this.data.ifsc}}</td>
+    
+  </tr>
+  
+</table></div>
+<div>
+ 
+<ul class="pagination">  
+  <pagination-controls (pageChange)="this.p = $event"></pagination-controls>  
+  </ul>  </div>
 <router-outlet></router-outlet>
