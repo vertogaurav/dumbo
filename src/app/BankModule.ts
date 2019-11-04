@@ -10,4 +10,5 @@ city:string;
 district:string;
 state:string;
 bank_name:string;
+fav:boolean
 }

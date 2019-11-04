@@ -3,38 +3,43 @@
   <h1 class="header">
     Welcome to {{ title }}!
   </h1>
-  <div>
-  <div class="Drop">
-    Select City:
-    <select name="DropList" #t (change)="getDetails(t.value)">
-        <option value="CITY">CITY</option>
-      <option value="MUMBAI">MUMBAI</option>
-      <option value="PUNE">PUNE</option>
-      <option value="BANGLORE">BANGLORE</option>
-      <option value="DELHI">DELHI</option>
-      <option value="HYDERABAD">HYDERABAD</option>
-    </select>
-  </div>
-  <div > 
-   Search Bank: <input type="text" placeholder="Search.." name="search"[(ngModel)]="this.filter">
-  </div>
-  <div class="noofpages">
+  <div><table>
+      <tr>
+    <td>     <div class="Drop">
+     Select City:
+     <select name="DropList" #t (change)="getDetails(t.value)">
+         <option value="CITY">CITY</option>
+       <option value="MUMBAI">MUMBAI</option>
+       <option value="PUNE">PUNE</option>
+       <option value="BANGLORE">BANGLORE</option>
+       <option value="DELHI">DELHI</option>
+       <option value="HYDERABAD">HYDERABAD</option>
+     </select>
+   </div></td>
+  <td> <div > 
+    Search Bank: <input type="text" placeholder="Search.." name="search"[(ngModel)]="this.filter">
+   </div></td>
+   <td><div >
       No of Pages:
-      <select name="DropList1"#q (change)="getpage(q.value)" >
-          <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
-    </div>
-</div>
+       <select name="DropList1"#q (change)="getpage(q.value)" >
+           <option value="10">10</option>
+         <option value="20">20</option>
+         <option value="30">30</option>
+         <option value="40">40</option>
+         <option value="50">50</option>
+         <option value="100">100</option>
+       </select>
+     </div>
+   </td>
+   </tr>
+   </table>
+ </div>
   <div> 
 </div>
 <div style="height: 10px"></div>
 <div><table>
   <tr>
+    <td>Fav</td>
     <th>City</th>
     <th>District</th>
     <th>Bank Name</th>
@@ -44,7 +49,11 @@
   </tr>
   
     <tr *ngFor="let data of DataList|filter:filter| paginate: { itemsPerPage: this.page, currentPage: this.p }">  
-    <td>{{this.data.city}}</td>
+    <td><img src="../assets/heart-1.png" *ngIf="data.fav==false" class="img" (click) = "fav(data)">
+      <img src="../assets/heart-2.png" *ngIf="data.fav==true" class="img1" (click)= "fav(data)">
+      </td>
+
+      <td>{{this.data.city}}</td>
     <td>{{this.data.district}}</td>
     <td>{{this.data.bank_name}}</td>
     <td>{{this.data.bank_id}}</td>
