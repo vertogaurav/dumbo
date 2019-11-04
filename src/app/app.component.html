@@ -49,8 +49,8 @@
   </tr>
   
     <tr *ngFor="let data of DataList|filter:filter| paginate: { itemsPerPage: this.page, currentPage: this.p }">  
-    <td><img src="../assets/heart-1.png" *ngIf="data.fav==false" class="img" (click) = "fav(data)">
-      <img src="../assets/heart-2.png" *ngIf="data.fav==true" class="img1" (click)= "fav(data)">
+    <td><img src="assets/heart-1.png" *ngIf="data.fav==false" class="img" (click) = "fav(data)">
+      <img src="assets/heart-2.png" *ngIf="data.fav==true" class="img1" (click)= "fav(data)">
       </td>
 
       <td>{{this.data.city}}</td>
